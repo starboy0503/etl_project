@@ -1,0 +1,103 @@
+movie-etl-ml/
+│── data/              # CSV files
+│── src/               # Python scripts
+│   ├── extract.py
+│   ├── transform.py
+│   └── load.py
+│── db/                # SQLite DB file will be stored here
+│── notebooks/         # Optional: Jupyter exploration
+│── tests/             # Later for unit tests
+│── requirements.txt
+│── README.md
+│── .gitignore
+
+
+
+
+------------------------------------------------------------------------------
+
+
+Notes: Fixing "No module named pandas" on macOS (Homebrew)
+1. Problem
+
+You got ModuleNotFoundError: No module named 'pandas'.
+
+On macOS with Homebrew Python (/opt/homebrew/bin/python3), pip install is restricted (externally-managed-environment).
+
+You were sometimes running scripts with system Python instead of your project virtual environment.
+
+2. Key Learnings
+
+python3 exists (/opt/homebrew/bin/python3) but plain python is not installed globally.
+
+pandas is a Python package, not a command → which pandas will never work.
+
+Installing system-wide is blocked → the right way is to use a virtual environment (venv).
+
+3. Correct Setup (Step-by-Step)
+(a) Create a virtual environment
+
+From your project folder:
+
+python3 -m venv venv
+
+
+This creates a folder venv/ with its own Python + site-packages.
+
+(b) Activate the venv
+source venv/bin/activate
+
+
+Your terminal prompt should now show (venv).
+
+Now, inside venv:
+
+python points to venv/bin/python
+
+pip installs into venv/lib/.../site-packages
+
+(c) Install dependencies
+
+Inside venv:
+
+pip install pandas numpy sqlalchemy
+
+
+Verify:
+
+python -m pip show pandas
+
+
+Should print version + install path.
+
+(d) Run your script with venv Python
+python src/extract.py
+
+
+⚠️ Do not use /opt/homebrew/bin/python3 directly — that bypasses your venv.
+
+4. VSCode Integration
+
+To avoid confusion:
+
+Press Cmd + Shift + P → Python: Select Interpreter.
+
+Choose:
+
+/Users/adityadhanrajsingh/Desktop/etl_projects/movie-etl-ml/venv/bin/python
+
+
+Or lock it in .vscode/settings.json:
+
+{
+  "python.defaultInterpreterPath": "${workspaceFolder}/venv/bin/python",
+  "python.terminal.activateEnvironment": true
+}
+
+5. Common Mistakes We Fixed
+
+❌ python3 install pandas numpy sqlalchemy → wrong (tries to run file install).
+✅ python3 -m pip install pandas numpy sqlalchemy.
+
+❌ Running script with /opt/homebrew/bin/python3 → wrong Python.
+✅ Run with python inside venv.
