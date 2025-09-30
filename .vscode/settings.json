@@ -1,0 +1,15 @@
+{
+    "sqltools.connections": [
+        {
+            "ssh": "Disabled",
+            "previewLimit": 50,
+            "server": "localhost",
+            "port": 5432,
+            "driver": "PostgreSQL",
+            "username": "adityadhanrajsingh",
+            "database": "weather_etl",
+            "name": "Weather ETL DB",
+            "password": ""
+        }
+    ]
+}
