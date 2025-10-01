@@ -1,0 +1,6 @@
+CREATE TABLE IF NOT EXISTS crypto_prices (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    coin TEXT,
+    price REAL,
+    timestamp DATETIME DEFAULT CURRENT_TIMESTAMP
+);
