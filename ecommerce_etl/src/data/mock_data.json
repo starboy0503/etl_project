@@ -1,0 +1,14 @@
+{
+  "customers": [
+    {"customer_id": 1, "name": "Alice", "email": "alice@mail.com", "country": "USA"},
+    {"customer_id": 2, "name": "Bob", "email": "bob@mail.com", "country": "UK"}
+  ],
+  "products": [
+    {"product_id": 101, "name": "Laptop", "category": "Electronics", "price": 1000},
+    {"product_id": 102, "name": "Headphones", "category": "Electronics", "price": 100}
+  ],
+  "orders": [
+    {"order_id": 5001, "customer_id": 1, "product_id": 101, "quantity": 1, "order_date": "2025-09-01"},
+    {"order_id": 5002, "customer_id": 2, "product_id": 102, "quantity": 2, "order_date": "2025-09-02"}
+  ]
+}
